@@ -1,13 +1,20 @@
 package com.example;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import java.util.List;
 
 public class CatTest {
 
-    Feline feline = new Feline();
-    Cat cat = new Cat(feline);
+    Feline feline;
+    Cat cat;
+
+    @Before
+    public void initObjects(){
+        feline = new Feline();
+        cat = new Cat(feline);
+    }
 
     @Test
     public void getSoundTest(){

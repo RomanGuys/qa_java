@@ -1,39 +1,25 @@
 package com.example;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-@RunWith(Parameterized.class)
 public class FelineTest {
-    private int kittensData;
-    private int expectedKittens;
 
-    public FelineTest(int kittensData, int expectedKittens) {
-        this.kittensData = kittensData;
-        this.expectedKittens = expectedKittens;
+    Feline feline;
+
+    @Before
+    public void initObjects(){
+        feline = new Feline();
     }
 
-    @Parameterized.Parameters
-    public static Object[][] getKittensTestData() {
-        return new Object[][]{
-                {1,1,},
-                {2,2,},
-                {3,3,},
-        };
-        }
-
-
-        @Test
-        public void getKittensTest() {
-            Feline feline = new Feline();
-            Assert.assertEquals(expectedKittens, feline.getKittens(kittensData));
-        }
-
-        @Test
-        public void familyTest(){
-            Feline feline = new Feline();
-            Assert.assertEquals("Кошачьи", feline.getFamily());
-        }
+    @Test
+    public void familyTest(){
+        Assert.assertEquals("Кошачьи", feline.getFamily());
     }
+
+    @Test
+    public void getKittensTest(){
+        Assert.assertEquals(1, feline.getKittens());
+    }
+}

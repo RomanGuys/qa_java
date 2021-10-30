@@ -1,13 +1,19 @@
 package com.example;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
 public class AnimalTest {
 
-    Animal animal = new Animal();
+    private Animal animal;
+
+    @Before
+            public void initObjects() {
+            animal = new Animal();
+            }
 
     @Test
     public void getFoodPredatorTest() throws Exception {
@@ -21,13 +27,9 @@ public class AnimalTest {
         Assert.assertTrue(animal.getFood("Травоядное").containsAll(expectedFood));
     }
 
-    @Test
-    public void getFoodExceptionTest() {
-        try {
-            animal.getFood("Бобёр");
-        } catch (Exception e) {
-            Assert.assertEquals(e.getMessage(),"Неизвестный вид животного, используйте значение Травоядное или Хищник");
-        }
+    @Test(expected = Exception.class)
+    public void getFoodExceptionTest() throws Exception {
+            animal.getFood("Бобер>");
     }
 
     @Test
